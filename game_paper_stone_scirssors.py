@@ -3,7 +3,7 @@ import tkinter as tk
 
 def click_button(user_choice):
     global user_point, comp_point
-    komp = choice(komputer_choice)
+    komp = choice(computer_choice)
 
     if user_choice == 'paper' and komp == 'stone' or user_choice == 'stone' and komp == 'scissors' or user_choice == 'scissors' and komp == 'paper':
         win = '       Gracz wygrał\n'
@@ -29,7 +29,7 @@ def click_button(user_choice):
 
 user_point = 0
 comp_point = 0
-komputer_choice = ['stone', 'paper', 'scissors']
+computer_choice = ['stone', 'paper', 'scissors']
 
 
 window = tk.Tk()
