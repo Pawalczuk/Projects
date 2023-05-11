@@ -4,8 +4,11 @@ from sys import argv
 # python dane_pogodowe.db setup  -  create file dane_pogodowe.db
 
 
+FILENAME = 'dane_pogodowe.db'
+
+
 def setup():
-    with sqlite3.connect('DoKodu/M07_M08/dane_pogodowe.db') as db:
+    with sqlite3.connect(FILENAME) as db:
         sql = '''CREATE TABLE weather(
         weather_id INTEGER PRIMARY KEY AUTOINCREMENT,
         data_pomiaru TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -31,7 +34,7 @@ weather_station = input('Podaj stację pogodową, która ciebie interesuje: ')
 check = True
 for rate in data:
     if rate['stacja'] == weather_station:
-        with sqlite3.connect('DoKodu/M07_M08/dane_pogodowe.db') as db:
+        with sqlite3.connect(FILENAME) as db:
             sql = '''INSERT INTO weather(data_pomiaru, nazwa_stacji, temperatura, ciśnienie) VALUES(?,?,?,?)'''
             cursor = db.cursor()
             cursor.execute(sql, (rate['data_pomiaru'], rate['stacja'], rate['temperatura'], rate['cisnienie']))
@@ -41,7 +44,7 @@ if check:
     print('Brak stacji o którą pytasz')
 
 
-with sqlite3.connect('DoKodu/M07_M08/dane_pogodowe.db') as db:
+with sqlite3.connect(FILENAME) as db:
     cursor = db.cursor()
     print('ID | DATA POMIARU | NAZWA STACJI | TEMPERATURA | CIŚNIENIE')
     for data in cursor.execute('SELECT * FROM weather'):
