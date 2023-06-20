@@ -29,9 +29,8 @@ except ValueError:
     print('Invalid date')
     sys.exit(1)
 
+
 url_date = date.strftime('%Y-%m-%d')
-
-
 URL = f'http://api.nbp.pl/api/exchangerates/rates/a/{currency}/{url_date}/?format=json'
 
 
